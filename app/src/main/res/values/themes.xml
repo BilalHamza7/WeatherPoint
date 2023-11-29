@@ -5,11 +5,8 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.WeatherPoint" parent="Base.Theme.WeatherPoint" />
-
-    <style name="SplashScreanTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/design_default_color_primary</item>
-        <item name="colorPrimaryDark">#30303C</item>
-        <item name="colorAccent">@color/design_default_color_surface</item>
+    <style name="Theme.WeatherPoint" parent="Base.Theme.WeatherPoint" >
+        <item name="android:windowIsTranslucent">true</item>
     </style>
+
 </resources>
