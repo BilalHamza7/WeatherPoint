@@ -13,13 +13,11 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentContainerView
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -211,6 +209,8 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
 
         if (!isVisible) {
             // Slide in animation
+            constantLayout.setBackgroundColor(ContextCompat.getColor(this,R.color.btn_focused))
+            imgMenuButton.setBackgroundResource(R.drawable.madmenuin)
             expandableContent.visibility = View.VISIBLE
             expandableContent.post {
                 expandableContent.translationX = expandableContent.width.toFloat()
@@ -221,6 +221,8 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
             }
         } else {
             // Slide out animation
+            imgMenuButton.setBackgroundResource(R.drawable.madmenuout)
+            constantLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_unfocused))
             expandableContent.animate()
                 .translationX(expandableContent.width.toFloat())
                 .setDuration(500)

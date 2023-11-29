@@ -104,15 +104,37 @@
 
 <!--        </androidx.fragment.app.FragmentContainerView>-->
 
+<!--        android:visibility="gone"-->
         <androidx.cardview.widget.CardView
             android:id="@+id/expandable_card"
             android:layout_width="390dp"
             android:layout_height="620dp"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="78dp"
             android:layout_marginEnd="15dp"
             android:background="@color/material_dynamic_neutral_variant40"
-            android:visibility="gone"/>
+            app:cardCornerRadius="10dp"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="#30303C">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current Weather Details"
+                    android:layout_gravity="center"
+                    android:textSize="30sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 
