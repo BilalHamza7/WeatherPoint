@@ -2,6 +2,7 @@ package nibm.project.weatherpoint
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -116,6 +117,7 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
         imgForecastButton.setOnClickListener(){
             clickedButton = imgForecastButton
             btnOnClick()
+            startActivity(Intent(this, ForecastScreen::class.java))
         }
 
         imgWeatherButton.setOnClickListener(){
