@@ -34,16 +34,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="410dp"
             app:cardBackgroundColor="#30303C" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="410dp"/>
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/idSearchView"
@@ -67,58 +69,311 @@
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="550dp"
-            android:layout_marginTop="200dp"
+            android:layout_height="350dp"
+            android:layout_marginTop="400dp"
             android:elevation="5dp"
             app:cardBackgroundColor="#4A4A57"
             app:cardCornerRadius="10dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="370dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="19dp"
-                    android:elevation="5dp"
-                    app:cardCornerRadius="10dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="223dp"
+                    app:cardBackgroundColor="#4A4A57">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
+                        <TextView
+                            android:id="@+id/cityLable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:text="Colombo"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            tools:ignore="TextSizeCheck" />
+
+                        <ImageView
+                            android:id="@+id/wIcon1"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_marginTop="40dp"
+                            android:layout_marginLeft="240dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/sunny" />
+
+                        <TextView
+                            android:id="@+id/day1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="55dp"
+                            android:layout_marginLeft="20dp"
+                            android:text="date1"
+                            android:textSize="14dp"
+                            android:textColor="@color/white"
+                            tools:ignore="TextSizeCheck" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="88dp"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/white"
+                            android:text="------------------------------------"/>
+
+                        <TextView
+                            android:id="@+id/forcastDis1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="118dp"
+                            android:layout_marginLeft="20dp"
+                            android:text="Scorching Sun"
+                            android:textSize="14dp"
+                            android:textColor="@color/white"
+                            tools:ignore="TextSizeCheck" />
+
+                        <TextView
+                            android:id="@+id/celcius1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="135dp"
+                            android:layout_marginLeft="20dp"
+                            android:text="27 °C"
+                            android:textSize="40dp"
+                            android:textColor="@color/white"
+                            tools:ignore="TextSizeCheck" />
+
+
+
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="103dp"
+                    android:layout_height="126dp"
+                    android:layout_marginTop="223dp"
+                    app:cardBackgroundColor="#4A4A57">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="6dp">
+
+                        <TextView
+                            android:id="@+id/day2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="date 2"
+                            android:textSize="12dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            tools:ignore="TextSizeCheck" />
+                        <ImageView
+                            android:id="@+id/wIcon2"
+                            android:layout_width="39dp"
+                            android:layout_height="39dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/raining" />
+
+                        <TextView
+                            android:id="@+id/forcastDis2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="2dp"
+                            android:text="Moderate rain"
+                            android:textSize="12dp"
+                            android:textColor="@color/white"
+                            tools:ignore="TextSizeCheck" />
+
+                        <TextView
+                            android:id="@+id/celcius2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="27 °C"
+                            android:textSize="12dp"
+                            android:textColor="@color/white"
+                            tools:ignore="TextSizeCheck" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="103dp"
+                    android:layout_height="126dp"
+                    android:layout_marginTop="223dp"
+                    android:layout_marginLeft="103dp"
+                    app:cardBackgroundColor="#4A4A57">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="6dp">
+
+                        <TextView
+                            android:id="@+id/day3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="date 3"
+                            android:textSize="12dp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            tools:ignore="TextSizeCheck" />
+                        <ImageView
+                            android:id="@+id/wIcon3"
+                            android:layout_width="39dp"
+                            android:layout_height="39dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/thunndercloud" />
+
+                        <TextView
+                            android:id="@+id/forcastDis3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="2dp"
+                            android:text="Thunder Cloud"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            tools:ignore="TextSizeCheck" />
+
+                        <TextView
+                            android:id="@+id/celcius3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="23 °C"
+                            android:textSize="12dp"
+                            android:textColor="@color/white"
+                            tools:ignore="TextSizeCheck" />
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:layout_width="370dp"
+                    android:layout_width="103dp"
                     android:layout_height="126dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="19dp"
-                    android:elevation="5dp"
-                    app:cardCornerRadius="10dp">
+                    android:layout_marginTop="223dp"
+                    android:layout_marginLeft="206dp"
+                    app:cardBackgroundColor="#4A4A57">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="6dp">
+
+                        <TextView
+                            android:id="@+id/day4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="date 4"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:textStyle="bold"
+                            tools:ignore="TextSizeCheck" />
+                        <ImageView
+                            android:id="@+id/wIcon4"
+                            android:layout_width="39dp"
+                            android:layout_height="39dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/sunny" />
+
+                        <TextView
+                            android:id="@+id/forcastDis4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:layout_marginTop="2dp"
+                            android:text="Sunny day"
+                            android:textSize="12dp"
+                            tools:ignore="TextSizeCheck" />
+
+                        <TextView
+                            android:id="@+id/celcius4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="32 °C"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            tools:ignore="TextSizeCheck" />
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:layout_width="370dp"
+                    android:layout_width="103dp"
                     android:layout_height="126dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="19dp"
-                    android:elevation="5dp"
-                    app:cardCornerRadius="10dp">
+                    android:layout_marginTop="223dp"
+                    android:layout_marginLeft="309dp"
+                    app:cardBackgroundColor="#4A4A57">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="6dp">
+
+                        <TextView
+                            android:id="@+id/day5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="date 5"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:textStyle="bold"
+                            tools:ignore="TextSizeCheck" />
+                        <ImageView
+                            android:id="@+id/wIcon5"
+                            android:layout_width="39dp"
+                            android:layout_height="39dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/partialycloudyday" />
+
+                        <TextView
+                            android:id="@+id/forcastDis5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:layout_marginTop="2dp"
+                            android:text="Partialy Cloudy day"
+                            android:gravity="center"
+                            android:textSize="12dp"
+                            tools:ignore="TextSizeCheck" />
+
+                        <TextView
+                            android:id="@+id/celcius5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="23 °C"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            tools:ignore="TextSizeCheck" />
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="370dp"
-                    android:layout_height="126dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="19dp"
-                    android:elevation="5dp"
-                    app:cardCornerRadius="10dp">
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
+
+
+            </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
 
 
 
 
-        
+
     </RelativeLayout>
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_navigation"
