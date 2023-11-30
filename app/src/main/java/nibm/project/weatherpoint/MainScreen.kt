@@ -223,7 +223,6 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
                 Log.e("Error", error.toString())
             }
         )
-
         Volley.newRequestQueue(this).add(request)
     }
 
