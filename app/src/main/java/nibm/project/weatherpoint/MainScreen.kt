@@ -218,15 +218,18 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
                 txtTemp.text = String.format("%.1f °C", data.getJSONObject("main").getDouble("temp") - 273.15)
                 txtPressure.text = data.getJSONObject("main").getString("pressure")
                 txtHumidity.text = data.getJSONObject("main").getString("humidity")
-                txtWindSpeed.text = data.getJSONObject("wind").getString("speed")
-                txtCloudiness.text = data.getJSONObject("clouds").getString("all")
+                txtWindSpeed.text = data.getJSONObject("wind").getDouble("speed").toString()
+                txtCloudiness.text = data.getJSONObject("clouds").getInt("all").toString() + "%"
+
+
+
                 val sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd")
                 val sdfTime = java.text.SimpleDateFormat("hh:mm:ss a")
                 val currentDate = sdfDate.format(java.util.Date())
                 val currentTime = sdfTime.format(java.util.Date())
                 txtDate.text = "$currentDate  |  $currentTime"
 
-                val imageurl = "https://openweathermap.org/img/w/"+ data.getJSONArray("weather").getJSONObject(0).getString("icon")+".png"
+                val imageurl = "https://openweathermap.org/img/wn/"+ data.getJSONArray("weather").getJSONObject(0).getString("icon")+"@4x.png"
                Picasso.get().load(imageurl).into(imgMainWeather)
             }catch (e : Exception){
         }
