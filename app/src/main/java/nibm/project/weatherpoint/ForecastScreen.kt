@@ -238,43 +238,33 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
         fMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
     }
 
-// <<<<<<< master
-//     @SuppressLint("SimpleDateFormat", "SetTextI18n")
-//     fun loadForecast(city : String)
-//     {
-//         val url = "https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=d13fd974b477f803c617fd941cd666aa"
-// =======
-//     private fun getCityNameFromLocation(forecastScreen: ForecastScreen, latitude: Double, longitude: Double): Pair<String, String> {
-//         val geocoder = Geocoder(forecastScreen, Locale.getDefault())
-//         var cityName = ""
-//         var countryName = ""
+    private fun getCityNameFromLocation(forecastScreen: ForecastScreen, latitude: Double, longitude: Double): Pair<String, String> {
+        val geocoder = Geocoder(forecastScreen, Locale.getDefault())
+        var cityName = ""
+        var countryName = ""
 
-//         try {
-//             val addresses = geocoder.getFromLocation(latitude, longitude, 1)
-//             if (addresses!!.isNotEmpty()) {
-//                 cityName = addresses[0].locality
-//                 countryName = addresses[0].countryName
-//             }
-//         } catch (e: IOException) {
-//             e.printStackTrace()
-//         }
-//         return Pair(cityName,countryName)
-//     }
+        try {
+            val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+            if (addresses!!.isNotEmpty()) {
+                cityName = addresses[0].locality
+                countryName = addresses[0].countryName
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return Pair(cityName, countryName)
+    }
 
-//     fun loadForecast(city : String){
-//         val url = "https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=dbcc0427a772b8fb267f25f3a7f21998"
-// >>>>>>> master
-        val request = JsonObjectRequest(Request.Method.GET, url, null,
+     @SuppressLint("SimpleDateFormat", "SetTextI18n")
+     fun loadForecast(city : String){
+         val url = "https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=dbcc0427a772b8fb267f25f3a7f21998"
+         val request = JsonObjectRequest(Request.Method.GET, url, null,
             { data->
                 Log.e("Response", data.toString())
 
                 try{
                     cityName.text = data.getJSONObject("city").getString("name")
 
-//                    val jsonArray = data.getJSONArray("list")
-//                    val jsonObject = jsonArray.getJSONObject(1)
-//                    val dt_txt = jsonObject.getString("dt_txt")
-//                    weatherDate1.text = dt_txt
                     val date = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(data.getJSONArray("list").getJSONObject(1).getString("dt_txt"))
                     weatherDate1.text = "${java.text.SimpleDateFormat("yyyy-MM-dd").format(date)}  |  ${java.text.SimpleDateFormat("hh:mm:ss a").format(date)}"
                     //split where there is a space then we format it
