@@ -114,7 +114,6 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
         forecastDis4 = findViewById(R.id.forcastDis4)
         forecastDis5 = findViewById(R.id.forcastDis5)
 
-
         temperature1 = findViewById(R.id.celcius1)
         temperature2 = findViewById(R.id.celcius2)
         temperature3 = findViewById(R.id.celcius3)

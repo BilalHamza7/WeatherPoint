@@ -33,6 +33,8 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.GoogleMapOptions
+import com.google.android.gms.maps.MapsInitializer
 import com.squareup.picasso.Picasso
 import nibm.project.weatherpoint.databinding.MainScreenBinding
 import java.io.IOException
@@ -240,7 +242,14 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
     //creates the map when screen opens
     private fun createMap(){
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.home_map) as SupportMapFragment
+        val apiKey = "AIzaSyDT0dzC9tCrgIe4SGRUKcEq7yv3dw09-bI" // Replace with your API key
+        try {
+            MapsInitializer.initialize(applicationContext)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
         mapFragment.getMapAsync(this)
     }
 
