@@ -54,6 +54,34 @@
             app:queryHint="Search Here"/>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="700dp"
+            android:layout_marginStart="13dp"
+            android:background="#C1FFFC">
+
+            <LinearLayout
+                android:id="@+id/ll_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#30303C"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/img_btn_refresh"
+                    android:layout_width="35dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/madrefresh"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/cv_expand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,8 +130,7 @@
             android:layout_marginEnd="15dp"
             android:background="@color/material_dynamic_neutral_variant40"
             app:cardCornerRadius="10dp"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,35 +139,83 @@
                 android:background="#30303C">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Weather Details"
-                    android:layout_gravity="center"
                     android:textSize="30sp"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="10dp"/>
-
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="180dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:contentDescription="main_weather"/>
+                    android:textColor="#E91D1D23"
+                    android:textAlignment="center"
+                    android:paddingTop="5dp"
+                    android:background="#B759CBE8"/>
 
                 <TextView
+                    android:id="@+id/txt_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Current main weather"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
+                    android:text="L"
+                    android:textSize="28sp"
                     android:textColor="@color/white"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="15sp"/>
+
+                <TextView
+                    android:id="@+id/txt_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="D"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="15sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="13dp">
+
+                    <LinearLayout
+                        android:layout_width="220dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Today:"
+                            android:textSize="28sp"
+                            android:textColor="@color/white"
+                            android:layout_marginStart="15sp"
+                            android:layout_marginTop="25dp"/>
+
+                        <TextView
+                            android:id="@+id/txt_main_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="L"
+                            android:textSize="25sp"
+                            android:textColor="@color/white"
+                            android:layout_marginStart="20sp"
+                            android:layout_marginTop="14dp"/>
+
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/img_main_weather"
+                        android:layout_width="160dp"
+                        android:layout_height="140dp"
+                        android:layout_marginEnd="20dp"
+                        android:contentDescription="main_weather"/>
+
+                </LinearLayout>
+
+
 
 <!--                row 1-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:padding="15dp">
 
                     <androidx.cardview.widget.CardView
@@ -168,7 +243,6 @@
                                 android:id="@+id/txt_temp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="temp"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
                                 android:layout_gravity="center"
@@ -203,7 +277,6 @@
                                 android:id="@+id/txt_humidity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="hum"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
                                 android:layout_gravity="center"
@@ -244,7 +317,6 @@
                                 android:id="@+id/txt_pressure"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="pres"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
                                 android:layout_gravity="center"
@@ -279,7 +351,6 @@
                                 android:id="@+id/txt_wind_speed"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="wind"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
                                 android:layout_gravity="center"
@@ -321,7 +392,6 @@
                                 android:id="@+id/txt_cloudiness"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="cloud"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
                                 android:layout_gravity="center"

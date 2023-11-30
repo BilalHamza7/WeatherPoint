@@ -8,17 +8,21 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
-import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -27,13 +31,15 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.Priority
+import com.squareup.picasso.Picasso
 import nibm.project.weatherpoint.databinding.MainScreenBinding
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 
 class MainScreen : AppCompatActivity(), OnMapReadyCallback {
 
@@ -51,17 +57,30 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var imgWeatherButton : ImageButton
     private lateinit var imgLocationButton : ImageButton
 
-    var searchView: SearchView? = null
+    private lateinit var cvRefresh : CardView //refresh button
+
+    var searchView: SearchView? = null //search bar
     var clickedButton: View? = null //to manage navigation bar btn clicks
 
 
     //---------LocationVariables----------
-    lateinit var locationRequest : LocationRequest
     val locationClient : FusedLocationProviderClient by lazy {
         LocationServices.getFusedLocationProviderClient(this) //Computed properties
     }
     var currentLocation : Location? = null
-    var marker: Marker? = null //to mark current location
+    val LOCATION_REQUEST_CODE = 1
+
+    //location details views
+    private lateinit var imgMainWeather : ImageView
+    private lateinit var txtMainDesc : TextView
+    private lateinit var txtLocation : TextView
+    private lateinit var txtTemp : TextView
+    private lateinit var txtHumidity : TextView
+    private lateinit var txtPressure : TextView
+    private lateinit var txtWindSpeed : TextView
+    private lateinit var txtCloudiness : TextView
+    private lateinit var txtDate : TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +88,8 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
         binding = MainScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //declaring views
+        //declaring expandable content views
+        cvRefresh = findViewById(R.id.cv_refresh)
         expandableContent = findViewById(R.id.expandable_card)
         constantLayout = findViewById(R.id.ll_constant)
         cvExpand = findViewById(R.id.cv_expand)
@@ -79,6 +99,21 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
         imgForecastButton = findViewById(R.id.img_btn_forecast)
         imgWeatherButton = findViewById(R.id.img_btn_weather)
         imgLocationButton = findViewById(R.id.img_btn_location)
+
+        //location views declaration
+        imgMainWeather = findViewById(R.id.img_main_weather)
+        txtDate = findViewById(R.id.txt_date)
+        txtMainDesc = findViewById(R.id.txt_main_desc)
+        txtLocation = findViewById(R.id.txt_location)
+        txtTemp = findViewById(R.id.txt_temp)
+        txtHumidity = findViewById(R.id.txt_humidity)
+        txtPressure = findViewById(R.id.txt_pressure)
+        txtWindSpeed = findViewById(R.id.txt_wind_speed)
+        txtCloudiness = findViewById(R.id.txt_cloudiness)
+        txtDate = findViewById(R.id.txt_cloudiness)
+
+        val currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/mm/yyyy"))
+        txtDate.text = currentDate
 
         clickedButton = imgHomeButton //initial button background
         btnOnClick()
@@ -93,7 +128,7 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchInMap()
-                createMap() //to sync the map with the seach location
+                createMap() //to sync the map with the search location
                 return true
             }
 
@@ -102,10 +137,12 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
             }
         })
 
-        //when user click location details
         cvExpand.setOnClickListener {
             toggleWeatherContent()
-        }
+        }//when user click location details
+        cvRefresh.setOnClickListener{
+            accessCurrentLocation()
+        }//refreshes the map to show current location
 
         //navigation
         imgHomeButton.setOnClickListener(){
@@ -126,61 +163,88 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
             btnOnClick()
         }
 
+
         // current location----------------------------------------------------------------------------------------------
         createMap() //creates the map
-        checkPermission()
     }
-
-    fun checkPermission(){
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-        { //to execute if the location is already granted by the user.
-            accessLocation()
-
-        }
-        else{ //system will request for location permission
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100) //array for multiple permission requests, request code can be used for verification
-        }
-    }
-
-    //get the current locatin marker to show up
-    //get the city name from the marker and send a volley request to open weather api
 
     @SuppressLint("MissingPermission")
-    fun accessLocation() {
-        locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 100).build() //the lower the requesting frequency the higher the battery drainage
-        val locationCallBack = object : LocationCallback() {
-            override fun onLocationResult(p0: LocationResult) {
-                super.onLocationResult(p0)
-
-                p0.locations.lastOrNull()?.let { location ->
-                    currentLocation?.latitude = location.latitude
-                    currentLocation?.longitude = location.longitude
-
-                    // Update marker on map
-                    val latLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
-                    updateMarker(latLng)
-                }
+    fun accessCurrentLocation() {
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_REQUEST_CODE)
+            return
+        }
+        mMap.isMyLocationEnabled = true
+        locationClient.lastLocation.addOnSuccessListener(this) { location -> //actual current location
+            if (location != null) {
+                currentLocation = location
+                val currentLatLng =
+                    LatLng(location.latitude, location.longitude) //my location lat and long
+                updateMarker(currentLatLng)
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 11f))
+                val city = getCityNameFromLocation(
+                    this,
+                    currentLocation!!.latitude,
+                    currentLocation!!.longitude
+                )
+                loadWeatherInfo(city = city.first)
+                txtLocation.text = city.first + ", " + city.second
             }
         }
-        locationClient.requestLocationUpdates(locationRequest, locationCallBack, Looper.getMainLooper())
+    }
+
+    private fun getCityNameFromLocation(mainScreen: MainScreen, latitude: Double, longitude: Double): Pair<String, String> {
+        val geocoder = Geocoder(mainScreen, Locale.getDefault())
+        var cityName = ""
+        var countryName = ""
+
+        try {
+            val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+            if (addresses!!.isNotEmpty()) {
+                cityName = addresses[0].locality
+                countryName = addresses[0].countryName
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return Pair(cityName,countryName)
+    }
+
+    private fun loadWeatherInfo(city: String) {
+        val url = "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=dbcc0427a772b8fb267f25f3a7f21998"
+        val request = JsonObjectRequest(
+            Request.Method.GET, url,null, {
+                data -> try {
+                txtMainDesc.text = data.getJSONArray("weather").getJSONObject(0).getString("description")
+                txtTemp.text = data.getJSONObject("main").getString("temp")
+                txtPressure.text = data.getJSONObject("main").getString("pressure")
+                txtHumidity.text = data.getJSONObject("main").getString("humidity")
+                txtWindSpeed.text = data.getJSONObject("wind").getString("speed")
+                txtCloudiness.text = data.getJSONObject("clouds").getString("all")
+//                val imageurl = "https://openweathermap.org/img/w"+ data.getJSONArray("weather").getJSONObject(0).getString("icon")+".png"
+//                Picasso.get().load(imageurl).into(imgMainWeather)
+            }catch (e : Exception){
+        }
+        },
+            {error->
+                Log.e("Error", error.toString())
+            }
+        )
+
+        Volley.newRequestQueue(this).add(request)
     }
 
     private fun updateMarker(latLng: LatLng) {
         // Remove previous marker if exists
-        marker?.remove()
-
+        mMap.clear()
         // Create a new marker at the current location
-        marker = mMap?.addMarker(
-            MarkerOptions()
-                .position(latLng)
-                .title("Current Location")
-        )
+        val markerOptions = MarkerOptions().position(latLng).title("Current Location")
+        mMap.addMarker(markerOptions)
 
         // Optionally move the camera to the updated location
-        mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
+        mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
     }
 
-    //might have to change this when current location is to be displayed
     //creates the map when screen opens
     private fun createMap(){
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -215,10 +279,15 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
             mMap?.clear()//remove existing markers
 
             //adding marker to that position.
-            mMap!!.addMarker(MarkerOptions().position(latLng).title(location))
+            updateMarker(latLng)
 
-            // below line is to animate camera to that position.
-            mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 8f))
+            val searchCity = getCityNameFromLocation( //weather update after a search for city
+                this,
+                latLng!!.latitude,
+                latLng!!.longitude
+            )
+            loadWeatherInfo(city = searchCity.first) //cont
+            txtLocation.text = searchCity.first + ", " + searchCity.second
         }
     }
 
@@ -280,9 +349,16 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    private var isCurrentLocationAccessed = false // to make this call only once when form load
+
     //initializes a marker in a location
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap //googleMap object
+
+        if (!isCurrentLocationAccessed) {
+            accessCurrentLocation()
+            isCurrentLocationAccessed = true
+        }
 
         mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
 

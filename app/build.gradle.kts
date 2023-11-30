@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "nibm.project.weatherpoint"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -41,9 +41,10 @@ android {
 }
 
 dependencies {
-
+    implementation("com.squareup.picasso:picasso:2.8")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.android.volley:volley:1.2.1")
     implementation ("com.google.android.material:material:1.0.0") //for buttons
 
     implementation("androidx.core:core-ktx:1.9.0")

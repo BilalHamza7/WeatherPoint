@@ -105,8 +105,8 @@
                             android:layout_height="150dp"
                             android:layout_marginTop="40dp"
                             android:layout_marginLeft="240dp"
-                            android:layout_gravity="center"
-                            app:srcCompat="@drawable/sunny" />
+                            android:layout_gravity="center"/>
+<!--                            app:srcCompat="@drawable/sunny" />-->
 
                         <TextView
                             android:id="@+id/day1"
@@ -181,8 +181,8 @@
                             android:layout_width="39dp"
                             android:layout_height="39dp"
                             android:layout_marginTop="10dp"
-                            android:layout_gravity="center"
-                            app:srcCompat="@drawable/raining" />
+                            android:layout_gravity="center"/>
+<!--                            app:srcCompat="@drawable/raining" />-->
 
                         <TextView
                             android:id="@+id/forcastDis2"
@@ -234,8 +234,8 @@
                             android:layout_width="39dp"
                             android:layout_height="39dp"
                             android:layout_marginTop="10dp"
-                            android:layout_gravity="center"
-                            app:srcCompat="@drawable/thunndercloud" />
+                            android:layout_gravity="center"/>
+<!--                            app:srcCompat="@drawable/thunndercloud" />-->
 
                         <TextView
                             android:id="@+id/forcastDis3"
@@ -286,8 +286,8 @@
                             android:layout_width="39dp"
                             android:layout_height="39dp"
                             android:layout_marginTop="10dp"
-                            android:layout_gravity="center"
-                            app:srcCompat="@drawable/sunny" />
+                            android:layout_gravity="center"/>
+<!--                            app:srcCompat="@drawable/sunny" />-->
 
                         <TextView
                             android:id="@+id/forcastDis4"
@@ -338,8 +338,8 @@
                             android:layout_width="39dp"
                             android:layout_height="39dp"
                             android:layout_marginTop="10dp"
-                            android:layout_gravity="center"
-                            app:srcCompat="@drawable/partialycloudyday" />
+                            android:layout_gravity="center"/>
+<!--                            app:srcCompat="@drawable/partialycloudyday" />-->
 
                         <TextView
                             android:id="@+id/forcastDis5"
