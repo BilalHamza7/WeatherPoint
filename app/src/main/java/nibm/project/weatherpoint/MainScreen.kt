@@ -112,8 +112,8 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
         txtCloudiness = findViewById(R.id.txt_cloudiness)
         txtDate = findViewById(R.id.txt_cloudiness)
 
-        val currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/mm/yyyy"))
-        txtDate.text = currentDate
+//        val currentDate = LocalDate.now().nowformat(DateTimeFormatter.ofPattern("dd/mm/yyyy"))
+//        txtDate.text = currentDate
 
         clickedButton = imgHomeButton //initial button background
         btnOnClick()
