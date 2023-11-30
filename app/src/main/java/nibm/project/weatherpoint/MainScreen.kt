@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.cardview.widget.CardView
@@ -35,10 +36,6 @@ import com.google.android.gms.location.LocationServices
 import com.squareup.picasso.Picasso
 import nibm.project.weatherpoint.databinding.MainScreenBinding
 import java.io.IOException
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Date
 import java.util.Locale
 
 class MainScreen : AppCompatActivity(), OnMapReadyCallback {
@@ -60,8 +57,6 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var cvRefresh : CardView //refresh button
 
     var searchView: SearchView? = null //search bar
-    var clickedButton: View? = null //to manage navigation bar btn clicks
-
 
     //---------LocationVariables----------
     val locationClient : FusedLocationProviderClient by lazy {
@@ -114,11 +109,8 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
 //        val currentDate = LocalDate.now().nowformat(DateTimeFormatter.ofPattern("dd/mm/yyyy"))
 //        txtDate.text = currentDate
 
-        clickedButton = imgHomeButton //initial button background
-        btnOnClick()
-
         //setting initial image
-        imgMenuButton.setBackgroundResource(R.drawable.madmenuout)
+        imgMenuButton.setBackgroundResource(R.drawable.madmenuin)
 
         //declaring search bar
         searchView = findViewById(R.id.idSearchView)
@@ -143,25 +135,21 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
             accessCurrentLocation()
         }//refreshes the map to show current location
 
+        imgHomeButton.setBackgroundColor(ContextCompat.getColor(this,R.color.btn_focused))
+
         //navigation
         imgHomeButton.setOnClickListener(){
-            clickedButton = imgHomeButton
-            btnOnClick()
+            Toast.makeText(this, "Already home.", Toast.LENGTH_SHORT).show()
         }
         imgForecastButton.setOnClickListener(){
-            clickedButton = imgForecastButton
-            btnOnClick()
             startActivity(Intent(this, ForecastScreen::class.java))
         }
         imgWeatherButton.setOnClickListener(){
-            clickedButton = imgWeatherButton
-            btnOnClick()
+//            startActivity(Intent(this, ForecastScreen::class.java))
         }
         imgLocationButton.setOnClickListener(){
-            clickedButton = imgLocationButton
-            btnOnClick()
+//            startActivity(Intent(this, ForecastScreen::class.java))
         }
-
 
         // current location----------------------------------------------------------------------------------------------
         createMap() //creates the map
@@ -238,7 +226,6 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
                 Log.e("Error", error.toString())
             }
         )
-
         Volley.newRequestQueue(this).add(request)
     }
 
@@ -326,34 +313,6 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
                     expandableContent.visibility = View.GONE
                 }
                 .start()
-        }
-    }
-
-    private fun btnOnClick(){
-
-        if(clickedButton == imgHomeButton) {
-            imgHomeButton.setBackgroundColor(ContextCompat.getColor(this,R.color.btn_focused))
-            imgForecastButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_unfocused))
-            imgWeatherButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_unfocused))
-            imgLocationButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_unfocused))
-        }
-        else if(clickedButton == imgForecastButton) {
-            imgHomeButton.setBackgroundColor(ContextCompat.getColor(this,R.color.btn_unfocused))
-            imgForecastButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_focused))
-            imgWeatherButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_unfocused))
-            imgLocationButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_unfocused))
-        }
-        else if(clickedButton == imgWeatherButton) {
-            imgHomeButton.setBackgroundColor(ContextCompat.getColor(this,R.color.btn_unfocused))
-            imgForecastButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_unfocused))
-            imgWeatherButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_focused))
-            imgLocationButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_unfocused))
-        }
-        else if(clickedButton == imgLocationButton) {
-            imgHomeButton.setBackgroundColor(ContextCompat.getColor(this,R.color.btn_unfocused))
-            imgForecastButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_unfocused))
-            imgWeatherButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_unfocused))
-            imgLocationButton.setBackgroundColor(ContextCompat.getColor(this, R.color.btn_focused))
         }
     }
 
