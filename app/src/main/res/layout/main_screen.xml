@@ -129,50 +129,56 @@
             android:layout_marginTop="78dp"
             android:layout_marginEnd="15dp"
             android:background="@color/material_dynamic_neutral_variant40"
-            app:cardCornerRadius="10dp"
-            android:visibility="gone">
+            android:visibility="visible"
+            app:cardCornerRadius="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="#30303C">
+                android:background="#30303C"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Weather Details"
-                    android:textSize="30sp"
-                    android:textColor="#E91D1D23"
-                    android:textAlignment="center"
+                    android:background="#B759CBE8"
+                    android:paddingHorizontal="13dp"
                     android:paddingTop="5dp"
-                    android:background="#B759CBE8"/>
+                    android:text="Weather Details"
+                    android:textColor="#E91D1D23"
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/txt_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="L"
-                    android:textSize="28sp"
-                    android:textColor="@color/white"
+                    android:layout_marginStart="15sp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginStart="15sp"/>
+                    android:text="City"
+                    android:textColor="@color/white"
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/txt_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="D"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"
+                    android:layout_marginStart="15sp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginStart="15sp"/>
+                    android:text="Date"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15sp"
+                    android:textColor="@color/white"
+                    android:text="----------------------------------------------------------------------------------------"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="13dp">
+                    android:layout_marginBottom="13dp"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="220dp"
@@ -182,37 +188,35 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Today:"
-                            android:textSize="28sp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="40dp"
+                            android:text="Today  weather"
                             android:textColor="@color/white"
-                            android:layout_marginStart="15sp"
-                            android:layout_marginTop="25dp"/>
-
+                            android:textSize="25dp"/>
                         <TextView
                             android:id="@+id/txt_main_desc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="L"
-                            android:textSize="25sp"
+                            android:layout_marginStart="15dp"
+                            android:text="weather"
                             android:textColor="@color/white"
-                            android:layout_marginStart="20sp"
-                            android:layout_marginTop="14dp"/>
+                            android:textSize="20dp" />
 
                     </LinearLayout>
 
 
                     <ImageView
                         android:id="@+id/img_main_weather"
-                        android:layout_width="160dp"
+                        android:layout_width="145dp"
                         android:layout_height="140dp"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="20dp"
                         android:contentDescription="main_weather"/>
 
                 </LinearLayout>
 
 
-
-<!--                row 1-->
+                <!--                row 1-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -227,26 +231,26 @@
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
                             android:background="#797994"
+                            android:orientation="vertical"
                             android:padding="10dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:text="Temperature"
                                 android:textColor="@color/white"
-                                android:textSize="18sp"
-                                android:layout_gravity="center"/>
+                                android:textSize="18sp" />
 
                             <TextView
                                 android:id="@+id/txt_temp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="8dp"/>
+                                android:layout_marginTop="8dp"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                     </androidx.cardview.widget.CardView>
@@ -261,32 +265,32 @@
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
                             android:background="#797994"
+                            android:orientation="vertical"
                             android:padding="10dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:text="Humidity"
                                 android:textColor="@color/white"
-                                android:textSize="18sp"
-                                android:layout_gravity="center"/>
+                                android:textSize="18sp" />
 
                             <TextView
                                 android:id="@+id/txt_humidity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="8dp"/>
+                                android:layout_marginTop="8dp"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                     </androidx.cardview.widget.CardView>
                 </RelativeLayout>
 
-<!--                row 2-->
+                <!--                row 2-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -301,26 +305,26 @@
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
                             android:background="#797994"
+                            android:orientation="vertical"
                             android:padding="10dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:text="Pressure"
                                 android:textColor="@color/white"
-                                android:textSize="18sp"
-                                android:layout_gravity="center"/>
+                                android:textSize="18sp" />
 
                             <TextView
                                 android:id="@+id/txt_pressure"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="8dp"/>
+                                android:layout_marginTop="8dp"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                     </androidx.cardview.widget.CardView>
@@ -335,32 +339,32 @@
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
                             android:background="#797994"
+                            android:orientation="vertical"
                             android:padding="10dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:text="Wind Speed"
                                 android:textColor="@color/white"
-                                android:textSize="18sp"
-                                android:layout_gravity="center"/>
+                                android:textSize="18sp" />
 
                             <TextView
                                 android:id="@+id/txt_wind_speed"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="8dp"/>
+                                android:layout_marginTop="8dp"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                     </androidx.cardview.widget.CardView>
                 </RelativeLayout>
 
-<!--                row 3-->
+                <!--                row 3-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -369,33 +373,33 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="170dp"
                         android:layout_height="80dp"
+                        android:layout_centerInParent="true"
                         android:padding="10dp"
-                        app:cardCornerRadius="10dp"
-                        android:layout_centerInParent="true">
+                        app:cardCornerRadius="10dp">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
                             android:background="#797994"
+                            android:orientation="vertical"
                             android:padding="10dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:text="Cloudiness"
                                 android:textColor="@color/white"
-                                android:textSize="18sp"
-                                android:layout_gravity="center"/>
+                                android:textSize="18sp" />
 
                             <TextView
                                 android:id="@+id/txt_cloudiness"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="8dp"/>
+                                android:layout_marginTop="8dp"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                     </androidx.cardview.widget.CardView>
