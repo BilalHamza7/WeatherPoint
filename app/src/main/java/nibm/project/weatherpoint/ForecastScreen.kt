@@ -286,15 +286,15 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
                     temperature4.text = String.format("%.0f °C", data.getJSONArray("list").getJSONObject(25).getJSONObject("main").getDouble("temp") - 273.15)
                     temperature5.text = String.format("%.0f °C", data.getJSONArray("list").getJSONObject(33).getJSONObject("main").getDouble("temp") - 273.15)
 
-                    val iconUrl1 = "http://openweathermap.org/img/w/${data.getJSONArray("list").getJSONObject(1).getJSONArray("weather").getJSONObject(0).getString("icon")}.png"  //here @4x to increase resolution of the icon
+                    val iconUrl1 = "https://openweathermap.org/img/w/" + data.getJSONArray("list").getJSONObject(1).getJSONArray("weather").getJSONObject(0).getString("icon")+".png"  //here @4x to increase resolution of the icon
                     Picasso.get().load(iconUrl1).into(weatherIcon1)
-                    val iconUrl2 = "http://openweathermap.org/img/w/${data.getJSONArray("list").getJSONObject(9).getJSONArray("weather").getJSONObject(0).getString("icon")}.png"
+                    val iconUrl2 = "https://openweathermap.org/img/w/${data.getJSONArray("list").getJSONObject(9).getJSONArray("weather").getJSONObject(0).getString("icon")}.png"
                     Picasso.get().load(iconUrl2).into(weatherIcon2)
-                    val iconUrl3 = "http://openweathermap.org/img/w/${data.getJSONArray("list").getJSONObject(17).getJSONArray("weather").getJSONObject(0).getString("icon")}.png"
+                    val iconUrl3 = "https://openweathermap.org/img/w/${data.getJSONArray("list").getJSONObject(17).getJSONArray("weather").getJSONObject(0).getString("icon")}.png"
                     Picasso.get().load(iconUrl3).into(weatherIcon3)
-                    val iconUrl4 = "http://openweathermap.org/img/w/${data.getJSONArray("list").getJSONObject(25).getJSONArray("weather").getJSONObject(0).getString("icon")}.png"
+                    val iconUrl4 = "https://openweathermap.org/img/w/${data.getJSONArray("list").getJSONObject(25).getJSONArray("weather").getJSONObject(0).getString("icon")}.png"
                     Picasso.get().load(iconUrl4).into(weatherIcon4)
-                    val iconUrl5 = "http://openweathermap.org/img/w/${data.getJSONArray("list").getJSONObject(33).getJSONArray("weather").getJSONObject(0).getString("icon")}.png"
+                    val iconUrl5 = "https://openweathermap.org/img/w/${data.getJSONArray("list").getJSONObject(33).getJSONArray("weather").getJSONObject(0).getString("icon")}.png"
                     Picasso.get().load(iconUrl5).into(weatherIcon5)
 
                 }
