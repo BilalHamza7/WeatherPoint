@@ -37,7 +37,8 @@ import java.io.IOException
 import java.util.Locale
 
 class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
-    private lateinit var mMap: GoogleMap //googleMap provided by android API represents object mMap
+    private lateinit var fMap: GoogleMap //googleMap provided by android API represents object mMap
+
     private lateinit var imgHomeButton : ImageButton
     private lateinit var imgForecastButton : ImageButton
     private lateinit var imgWeatherButton : ImageButton
@@ -169,14 +170,14 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_REQUEST_CODE)
             return
         }
-        mMap.isMyLocationEnabled = true
+        fMap.isMyLocationEnabled = true
         locationClient.lastLocation.addOnSuccessListener(this) { location -> //actual current location
             if (location != null) {
                 currentLocation = location
                 val currentLatLng =
                     LatLng(location.latitude, location.longitude) //my location lat and long
                 updateMarker(currentLatLng)
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 11f))
+                fMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 11f))
                 val city = getCityNameFromLocation(
                     this,
                     currentLocation!!.latitude,
@@ -211,7 +212,7 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
             //search locations latitude and longitude.
             val latLng = LatLng(address.latitude, address.longitude)
 
-            mMap?.clear()//remove existing markers
+            fMap?.clear()//remove existing markers
 
             //adding marker to that position.
             updateMarker(latLng)
@@ -228,13 +229,13 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
 
     private fun updateMarker(latLng: LatLng) {
         // Remove previous marker if exists
-        mMap.clear()
+        fMap.clear()
         // Create a new marker at the current location
         val markerOptions = MarkerOptions().position(latLng).title("Current Location")
-        mMap.addMarker(markerOptions)
+        fMap.addMarker(markerOptions)
 
         // Optionally move the camera to the updated location
-        mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
+        fMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
     }
 
     private fun getCityNameFromLocation(forecastScreen: ForecastScreen, latitude: Double, longitude: Double): Pair<String, String> {
@@ -312,14 +313,14 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
     private var isCurrentLocationAccessed = false
 
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap //googleMap object
+        fMap = googleMap //googleMap object
 
         if (!isCurrentLocationAccessed) {
             accessCurrentLocation()
             isCurrentLocationAccessed = true
         }
 
-        mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
+        fMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
 
             override fun onMarkerDragStart(marker: Marker) {}
             override fun onMarkerDrag(marker: Marker) {

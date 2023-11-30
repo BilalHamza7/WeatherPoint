@@ -110,7 +110,7 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
 //        txtDate.text = currentDate
 
         //setting initial image
-        imgMenuButton.setBackgroundResource(R.drawable.madmenuout)
+        imgMenuButton.setBackgroundResource(R.drawable.madmenuin)
 
         //declaring search bar
         searchView = findViewById(R.id.idSearchView)
