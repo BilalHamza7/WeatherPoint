@@ -111,7 +111,7 @@ class ForecastScreen : AppCompatActivity() {
     {
         val url = "https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=d13fd974b477f803c617fd941cd666aa"
         val request = JsonObjectRequest(Request.Method.GET, url, null,
-            Response.Listener { data->
+            { data->
                 Log.e("Response", data.toString())
 
                 try{
@@ -156,7 +156,7 @@ class ForecastScreen : AppCompatActivity() {
                     Log.e("Error",e.toString())
                 }
             },
-            Response.ErrorListener { error ->
+            { error ->
                 Log.e("Response", error.toString())
             })
 

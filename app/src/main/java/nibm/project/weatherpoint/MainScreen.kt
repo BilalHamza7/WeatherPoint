@@ -110,7 +110,6 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
         txtPressure = findViewById(R.id.txt_pressure)
         txtWindSpeed = findViewById(R.id.txt_wind_speed)
         txtCloudiness = findViewById(R.id.txt_cloudiness)
-        txtDate = findViewById(R.id.txt_cloudiness)
 
 //        val currentDate = LocalDate.now().nowformat(DateTimeFormatter.ofPattern("dd/mm/yyyy"))
 //        txtDate.text = currentDate
@@ -221,6 +220,8 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
                 txtHumidity.text = data.getJSONObject("main").getString("humidity")
                 txtWindSpeed.text = data.getJSONObject("wind").getString("speed")
                 txtCloudiness.text = data.getJSONObject("clouds").getString("all")
+                txtDate.text = data.getJSONArray("list").getJSONObject(1).getString("dt_txt").let { it.split(" ")[0] + "  |  " + it.split(" ")[1] }
+
 //                val imageurl = "https://openweathermap.org/img/w"+ data.getJSONArray("weather").getJSONObject(0).getString("icon")+".png"
 //                Picasso.get().load(imageurl).into(imgMainWeather)
             }catch (e : Exception){
