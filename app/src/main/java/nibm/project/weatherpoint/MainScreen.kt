@@ -61,6 +61,7 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
         LocationServices.getFusedLocationProviderClient(this) //Computed properties
     }
     var currentLocation : Location? = null
+    var marker: Marker? = null //to mark current location
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,8 +89,6 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
         //declaring search bar
         searchView = findViewById(R.id.idSearchView)
 
-        createMap() //creates the map with a marker at beruwala
-
         //when user submits a search
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -113,24 +112,22 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
             clickedButton = imgHomeButton
             btnOnClick()
         }
-
         imgForecastButton.setOnClickListener(){
             clickedButton = imgForecastButton
             btnOnClick()
             startActivity(Intent(this, ForecastScreen::class.java))
         }
-
         imgWeatherButton.setOnClickListener(){
             clickedButton = imgWeatherButton
             btnOnClick()
         }
-
         imgLocationButton.setOnClickListener(){
             clickedButton = imgLocationButton
             btnOnClick()
         }
 
-        // current location   ----------------------------------------------------------------------------------------------
+        // current location----------------------------------------------------------------------------------------------
+        createMap() //creates the map
         checkPermission()
     }
 
@@ -145,6 +142,9 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    //get the current locatin marker to show up
+    //get the city name from the marker and send a volley request to open weather api
+
     @SuppressLint("MissingPermission")
     fun accessLocation() {
         locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 100).build() //the lower the requesting frequency the higher the battery drainage
@@ -156,11 +156,28 @@ class MainScreen : AppCompatActivity(), OnMapReadyCallback {
                     currentLocation?.latitude = location.latitude
                     currentLocation?.longitude = location.longitude
 
-
+                    // Update marker on map
+                    val latLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
+                    updateMarker(latLng)
                 }
             }
         }
         locationClient.requestLocationUpdates(locationRequest, locationCallBack, Looper.getMainLooper())
+    }
+
+    private fun updateMarker(latLng: LatLng) {
+        // Remove previous marker if exists
+        marker?.remove()
+
+        // Create a new marker at the current location
+        marker = mMap?.addMarker(
+            MarkerOptions()
+                .position(latLng)
+                .title("Current Location")
+        )
+
+        // Optionally move the camera to the updated location
+        mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
     }
 
     //might have to change this when current location is to be displayed
