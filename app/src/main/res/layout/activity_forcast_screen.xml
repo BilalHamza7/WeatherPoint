@@ -93,7 +93,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
                             android:layout_marginLeft="20dp"
-                            android:text="Colombo"
+                            android:text="Madras"
                             android:textSize="25dp"
                             android:textStyle="bold"
                             android:textColor="@color/white"
@@ -105,8 +105,7 @@
                             android:layout_height="150dp"
                             android:layout_marginTop="40dp"
                             android:layout_marginLeft="240dp"
-                            android:layout_gravity="center"/>
-<!--                            app:srcCompat="@drawable/sunny" />-->
+                            app:srcCompat="@drawable/sunny" />
 
                         <TextView
                             android:id="@+id/day1"
@@ -114,7 +113,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="55dp"
                             android:layout_marginLeft="20dp"
-                            android:text="date1"
+                            android:text="Day 1"
                             android:textSize="14dp"
                             android:textColor="@color/white"
                             tools:ignore="TextSizeCheck" />
@@ -144,7 +143,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="135dp"
                             android:layout_marginLeft="20dp"
-                            android:text="27 °C"
+                            android:text="28 °C"
                             android:textSize="40dp"
                             android:textColor="@color/white"
                             tools:ignore="TextSizeCheck" />
@@ -171,7 +170,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="date 2"
+                            android:text="Day 2"
                             android:textSize="12dp"
                             android:textStyle="bold"
                             android:textColor="@color/white"
@@ -181,8 +180,8 @@
                             android:layout_width="39dp"
                             android:layout_height="39dp"
                             android:layout_marginTop="10dp"
-                            android:layout_gravity="center"/>
-<!--                            app:srcCompat="@drawable/raining" />-->
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/raining" />
 
                         <TextView
                             android:id="@+id/forcastDis2"
@@ -200,7 +199,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="27 °C"
+                            android:text="26 °C"
                             android:textSize="12dp"
                             android:textColor="@color/white"
                             tools:ignore="TextSizeCheck" />
@@ -224,7 +223,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="date 3"
+                            android:text="Day 3"
                             android:textSize="12dp"
                             android:textColor="@color/white"
                             android:textStyle="bold"
@@ -234,8 +233,8 @@
                             android:layout_width="39dp"
                             android:layout_height="39dp"
                             android:layout_marginTop="10dp"
-                            android:layout_gravity="center"/>
-<!--                            app:srcCompat="@drawable/thunndercloud" />-->
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/thunndercloud" />
 
                         <TextView
                             android:id="@+id/forcastDis3"
@@ -253,7 +252,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="23 °C"
+                            android:text="24 °C"
                             android:textSize="12dp"
                             android:textColor="@color/white"
                             tools:ignore="TextSizeCheck" />
@@ -276,7 +275,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="date 4"
+                            android:text="Day 4"
                             android:textColor="@color/white"
                             android:textSize="12dp"
                             android:textStyle="bold"
@@ -286,8 +285,8 @@
                             android:layout_width="39dp"
                             android:layout_height="39dp"
                             android:layout_marginTop="10dp"
-                            android:layout_gravity="center"/>
-<!--                            app:srcCompat="@drawable/sunny" />-->
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/raining" />
 
                         <TextView
                             android:id="@+id/forcastDis4"
@@ -296,7 +295,7 @@
                             android:layout_gravity="center"
                             android:textColor="@color/white"
                             android:layout_marginTop="2dp"
-                            android:text="Sunny day"
+                            android:text="moderate rain"
                             android:textSize="12dp"
                             tools:ignore="TextSizeCheck" />
 
@@ -305,7 +304,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="32 °C"
+                            android:text="27 °C"
                             android:textColor="@color/white"
                             android:textSize="12dp"
                             tools:ignore="TextSizeCheck" />
@@ -328,7 +327,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="date 5"
+                            android:text="Day 5"
                             android:textColor="@color/white"
                             android:textSize="12dp"
                             android:textStyle="bold"
@@ -338,8 +337,8 @@
                             android:layout_width="39dp"
                             android:layout_height="39dp"
                             android:layout_marginTop="10dp"
-                            android:layout_gravity="center"/>
-<!--                            app:srcCompat="@drawable/partialycloudyday" />-->
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/partialycloudyday" />
 
                         <TextView
                             android:id="@+id/forcastDis5"
@@ -358,7 +357,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="23 °C"
+                            android:text="26 °C"
                             android:textColor="@color/white"
                             android:textSize="12dp"
                             tools:ignore="TextSizeCheck" />
