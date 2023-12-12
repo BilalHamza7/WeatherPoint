@@ -53,6 +53,33 @@
             app:iconifiedByDefault="false"
             app:queryHint="Search Here"/>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="350dp"
+            android:layout_marginStart="13dp"
+            android:background="#C1FFFC">
+
+            <LinearLayout
+                android:id="@+id/ll_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#30303C"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/img_btn_refresh"
+                    android:layout_width="35dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/madrefresh"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -76,6 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="223dp"
                     app:cardBackgroundColor="#4A4A57">
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -123,10 +151,10 @@
                             android:id="@+id/forcastDis1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="118dp"
+                            android:layout_marginTop="170dp"
                             android:layout_marginLeft="20dp"
                             android:text="Scorching Sun"
-                            android:textSize="14dp"
+                            android:textSize="16sp"
                             android:textColor="@color/white"
                             tools:ignore="TextSizeCheck" />
 
@@ -134,7 +162,7 @@
                             android:id="@+id/celcius1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="135dp"
+                            android:layout_marginTop="115dp"
                             android:layout_marginLeft="20dp"
                             android:text="28 °C"
                             android:textSize="40dp"
@@ -168,6 +196,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/white"
                             tools:ignore="TextSizeCheck" />
+
                         <ImageView
                             android:id="@+id/wIcon2"
                             android:layout_width="39dp"

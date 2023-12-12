@@ -10,16 +10,15 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -32,8 +31,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.squareup.picasso.Picasso
-import nibm.project.weatherpoint.databinding.ActivityForcastScreenBinding
-import nibm.project.weatherpoint.databinding.MainScreenBinding
 import java.io.IOException
 import java.util.Locale
 
@@ -45,7 +42,7 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var imgWeatherButton : ImageButton
     private lateinit var imgLocationButton : ImageButton
 
-    private lateinit var binding : ActivityForcastScreenBinding
+    private lateinit var cvRefresh : CardView //refresh button
 
     private lateinit var cityName : TextView
 
@@ -85,15 +82,13 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forcast_screen)
 
-        binding = ActivityForcastScreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
         searchView = findViewById(R.id.idSearchView)
         imgHomeButton = findViewById(R.id.img_btn_home)
         imgForecastButton = findViewById(R.id.img_btn_forecast)
         imgWeatherButton = findViewById(R.id.img_btn_weather)
         imgLocationButton = findViewById(R.id.img_btn_location)
 
+        cvRefresh = findViewById(R.id.cv_refresh)
 
         cityName = findViewById(R.id.cityLable)
 
@@ -147,14 +142,18 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
             startActivity(Intent(this, MainScreen::class.java))
         }
         imgForecastButton.setOnClickListener(){
-            Toast.makeText(this, "Already in forecast.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Already in forecast menu.", Toast.LENGTH_SHORT).show()
         }
         imgWeatherButton.setOnClickListener(){
-//            startActivity(Intent(this, ForecastScreen::class.java))
+            startActivity(Intent(this, WeatherScreen::class.java))
         }
         imgLocationButton.setOnClickListener(){
-//            startActivity(Intent(this, ForecastScreen::class.java))
+            startActivity(Intent(this, LocationScreen::class.java))
         }
+
+        cvRefresh.setOnClickListener{
+            accessCurrentLocation()
+        }//refreshes the map to show current location
 
         createMap()
     }
@@ -184,7 +183,7 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
                     currentLocation!!.longitude
                 )
                 loadForecast(city = city.first)
-                cityName.text = city.first + ", " + city.second
+                cityName.text = city.first + ", " + city.second+"."
             }
         }
     }
@@ -255,16 +254,14 @@ class ForecastScreen : AppCompatActivity(), OnMapReadyCallback {
         return Pair(cityName, countryName)
     }
 
-     @SuppressLint("SimpleDateFormat", "SetTextI18n")
-     fun loadForecast(city : String){
-         val url = "https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=dbcc0427a772b8fb267f25f3a7f21998"
-         val request = JsonObjectRequest(Request.Method.GET, url, null,
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
+    fun loadForecast(city : String){
+        val url = "https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=dbcc0427a772b8fb267f25f3a7f21998"
+        val request = JsonObjectRequest(Request.Method.GET, url, null,
             { data->
                 Log.e("Response", data.toString())
 
                 try{
-                    cityName.text = data.getJSONObject("city").getString("name")
-
                     val date = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(data.getJSONArray("list").getJSONObject(1).getString("dt_txt"))
                     weatherDate1.text = "${java.text.SimpleDateFormat("yyyy-MM-dd").format(date)}  |  ${java.text.SimpleDateFormat("hh:mm:ss a").format(date)}"
                     //split where there is a space then we format it

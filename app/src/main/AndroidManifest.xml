@@ -16,17 +16,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherPoint"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".GoogleMap"-->
-<!--            android:exported="false" />-->
 
         <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyDT0dzC9tCrgIe4SGRUKcEq7yv3dw09-bI" />
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDT0dzC9tCrgIe4SGRUKcEq7yv3dw09-bI" />
+
+        <activity
+            android:name=".LocationScreen"
+            android:exported="false"
+            android:theme="@style/SplashScreanTheme" />
+
+        <activity
+            android:name=".WeatherScreen"
+            android:exported="false"
+            android:theme="@style/SplashScreanTheme" />
+
         <activity
             android:name=".ForecastScreen"
             android:exported="false"
             android:theme="@style/SplashScreanTheme" />
+
         <activity
             android:name=".SplashScreen"
             android:exported="true"
@@ -37,10 +46,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainScreen"
             android:exported="true"
             android:theme="@style/SplashScreanTheme" />
+
     </application>
 
 </manifest>
